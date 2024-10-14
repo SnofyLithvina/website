@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot with API Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: block;
+            justify-content: right;
+            align-items:right;
+            height: 80vh;
+        }
+        .chat-container {
+            width: 300px;
+            height: 425px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .chat-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .chat-messages p {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+        }
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .chat-input button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const responses = {
+            "hi": "Hello! How can I help you today?",
+            "hello": "Hi! What can I assist you with?",
+            "courses": "We offer a wide range of courses including Engineering, Arts, and Sciences.",
+            "admissions": "Our admissions process starts in May. You can apply online on our website.",
+            "bye": "Goodbye! Have a great day!"
+        };
+        // Function to send a message
+        async function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (userInput.trim() === '') return;
+
+            const chatMessages = document.getElementById('chat-messages');
+
+        // Append user's message
+        const userMessage = document.createElement('p');
+        userMessage.textContent = 'You: ' + userInput;
+        userMessage.style.textAlign = 'right';
+        chatMessages.appendChild(userMessage);
+
+        // Display bot response
+        const botMessage = document.createElement('div');
+        botMessage.className = "message botMessage";
+
+        // Check if a response exists for the user's input
+            if (responses[userInput]) {
+                botMessage.textContent = responses[userInput];
+            } else {
+                botMessage.textContent = "Sorry, I don't understand that. Try asking about admissions, courses, or more!";
+            }
+            
+        chatbox.appendChild(botMessage);
+
+
+        // Clear input field
+        document.getElementById('user-input').value = '';
+
+        // Scroll to the bottom of the chat
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            
+        }
+    </script>
+
+    <div class="chat-container">
+        <div class="chat-header">Chatbot</div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Website with Chatbot</title>
+</head>
+<body>
+    <h1>Welcome to Our College Website</h1>
+    <p>Explore our programs, resources, and campus life!</p>
+
+    <!-- Chatbot Script -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/67039ccecec6d0125df29e07/1i9j1p2ir';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        const responses = {
+            "hi": "Hello! How can I help you today?",
+            "hello": "Hi! What can I assist you with?",
+            "courses": "We offer a wide range of courses including Engineering, Arts, and Sciences.",
+            "admissions": "Our admissions process starts in May. You can apply online on our website.",
+            "bye": "Goodbye! Have a great day!"
+        };
+    
+        function sendMessage() {
+            const userInput = document.getElementById('userInput').value.toLowerCase().trim();
+            const chatbox = document.getElementById('chatbox');
+            
+            if (userInput !== "") {
+                // Display user's message
+                const userMessage = document.createElement('div');
+                userMessage.className = "message userMessage";
+                userMessage.textContent = userInput;
+                chatbox.appendChild(userMessage);
+                
+                // Display bot response
+                const botMessage = document.createElement('div');
+                botMessage.className = "message botMessage";
+    
+                // Check if a response exists for the user's input
+                if (responses[userInput]) {
+                    botMessage.textContent = responses[userInput];
+                } else {
+                    botMessage.textContent = "Sorry, I don't understand that. Try asking about admissions, courses, or more!";
+                }
+                
+                chatbox.appendChild(botMessage);
+    
+                // Clear the input field
+                document.getElementById('userInput').value = "";
+                
+                // Scroll to the bottom of the chatbox
+                chatbox.scrollTop = chatbox.scrollHeight;
+            }
+        }
+        })();
+    </script>
+
+</body>
+</html>

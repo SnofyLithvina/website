@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMI College of Engineering, Aralvaimozhi</title>
+    
+
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Header styling */
+        header {
+            background-image: url('bg image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: #f9fafb;
+            color: #d5d2d2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        /* Navigation styling */
+        nav {
+            background-color: #007bff;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #fff;
+            padding: 15px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Main content styling */
+        .main-section {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .main-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .main-section p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Admission Section */
+        .admission-section {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .admission-section p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Register button */
+        .reg-button {
+            padding: 10px ;
+            background-color: #004466;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .reg-button:hover {
+            background-color: #e7ecef;
+        }
+
+
+        /* Course section */
+        .courses {
+            background-color: #f4f4f4;
+            padding: 30px;
+        }
+
+        .courses h4 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .course-list {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .course-list li {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 200px;
+        }
+
+        /* Chatbot Container */
+        #chatbot {
+            width: 350px;
+            height: 450px;
+            border: 2px solid #007bff;
+            border-radius: 15px;
+            position: relative;
+            top: 20px;
+            bottom: 20px;
+            left: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        /* Chatbot Header */
+        #chatbot-header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Chatbox messages container */
+        #chatbox {
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-bottom: 2px solid #007bff;
+            scroll-behavior: smooth;
+        }
+
+        /* Chat messages styles */
+        .message {
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            max-width: 80%;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .bot-message {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-start;
+        }
+
+        .user-message {
+            background-color: #e1ffc7;
+            color: black;
+            align-self: flex-end;
+        }
+
+        /* Input area */
+        #input-area {
+            display: flex;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 2px solid #007bff;
+        }
+
+        #userInput {
+            flex-grow: 1;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        #sendButton {
+            margin-left: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Scrollbar styling */
+        #chatbox::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #chatbox::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        #chatbox::-webkit-scrollbar-thumb {
+            background: #007bff;
+            border-radius: 10px;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            #chatbot {
+                width: 90%;
+                bottom: 10px;
+                right: 5%;
+            }
+        }
+
+        
+        /* Contact section */
+        .contact {
+            margin-top: 20px;
+            padding: 30px;
+            background-color: #002147;
+            color: white;
+            text-align: center;
+        }
+
+        .contact h6 {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            font-size: 18px;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>DMI College of Engineering, Aralvaimozhi</h1>
+        <p>Committed to Excellence in Education and Innovation</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+    <!-- Main Section -->
+    <section class="main-section" id="about">
+        <h2>Welcome to DMI College of Engineering</h2>
+        <p>
+            DMI College of Engineering, Aralvaimozhi, is dedicated to providing quality education in engineering and technology. 
+            We aim to nurture young minds to become future leaders in the field of technology and innovation.
+        </p>
+    </section>
+
+    <!-- Admission Section -->
+     <section class="admission-section" id="admission">
+        <h3>Admissions</h3>
+        <ul class="admission-section">
+            <li>Courses Offered B.E. Computer Science and Engineering B.E. Electronics and Communication Engineering</li>
+            <li>B.E. Electrical and Electronics Engineering B.E….</li>
+        </ul>
+        <a href="reg_form.html" class="reg-button">Register Now</a>
+     </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <h4>Our Popular Courses</h4>
+        <ul class="course-list">
+            <li>Computer Science & Engineering</li>
+            <li>Electrical & Electronics Engineering</li>
+            <li>Mechanical Engineering</li>
+            <li>AI & DS</li>
+            <li>IT</li>
+        </ul>
+    </section>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot">
+        <div id="chatbot-header">Chat with us!</div>
+        <div id="chatbox"></div>
+        <div id="input-area">
+            <input type="text" id="userInput" placeholder="Type a message..." />
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <!-- JavaScript for Chatbot functionality -->
+    <script>
+        const chatbot = document.getElementById('chatbox');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+
+        // Predefined chatbot responses
+        const responses = {
+            "hello": "Hi there! How can I assist you today?",
+            "admissions": "You can find more information about admissions on our <a href='#'>Admissions Page</a>.",
+            "courses": "We offer a variety of courses. Check out the <a href='#'>Courses Page</a> for more details.",
+            "bye": "Goodbye! Feel free to reach out anytime."
+        };
+
+        // Function to display a message in the chatbox
+        function displayMessage(message, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', `${sender}-message`);
+            messageElement.innerHTML = message;
+            chatbot.appendChild(messageElement);
+            chatbot.scrollTop = chatbot.scrollHeight; // Scroll to bottom
+        }
+        
+        // Function to handle user input
+        function handleUserInput() {
+            const userMessage = userInput.value.trim().toLowerCase();
+            if (userMessage === "") return;
+
+            // Display user's message
+            displayMessage(userInput.value, 'user');
+            userInput.value = '';
+
+       
+            
+            // Provide a bot response
+            setTimeout(() => {
+                const response = responses[userMessage] || "Sorry, I don't understand that.";
+                displayMessage(response, 'bot');
+            }, 500);
+        }
+
+        // Event listener for the Send button
+        sendButton.addEventListener('click', handleUserInput);
+
+        // Event listener for pressing Enter in the input field
+        userInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                handleUserInput();
+            }
+        });
+
+    </script>
+
+
+        
+    
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h6>Contact Us</h6>
+        <p>DMI College of Engineering, Aralvaimozhi</p>
+        <p>Email: info@dmi-engineering.com</p>
+        <p>Phone: +91 1234 567 890</p>
+    </section>
+
+    
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 DMI Engineering College, Aralvaimozhi. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot with Links</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: right;
+            text-align: right;
+        }
+        #chatbox {
+            width: 300px;
+            height: 400px;
+            border: 2px solid #666;
+            padding: 10px;
+            justify-content: center;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+        }
+        #userInput {
+            width: 100%;
+            padding: 10px;
+
+        }
+        .message {
+            padding: 5px;
+            margin: 5px 0;
+        }
+        .userMessage {
+            text-align: right;
+            background-color: #d1e7dd;
+            border-radius: 5px;
+        }
+        .botMessage {
+            text-align: left;
+            background-color: #f8d7da;
+            border-radius: 5px;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Chatbot with Link Responses</h2>
+<div id="chatbox">
+    <!-- Chat messages will appear here -->
+</div>
+
+<input type="text" id="userInput" placeholder="Ask me anything..." onkeypress="if(event.key === 'Enter') { sendMessage(); }" />
+<button onclick="sendMessage()">Send</button>
+
+<script>
+    // Predefined responses with links
+    const responses = {
+        "hi": "Hello! How can I help you today?",
+        "courses": "We offer a variety of courses. You can check them <a href='https://www.yoursite.com/courses'>here</a>.",
+        "admissions": "Learn more about our admissions process <a href='https://www.yoursite.com/admissions'>here</a>.",
+        "departments": "Explore our departments <a href='https://www.yoursite.com/departments'>here</a>.",
+        "contact": "You can contact us on this page: <a href='https://www.yoursite.com/contact'>Contact Us</a>.",
+        "bye": "Goodbye! Have a great day!"
+    };
+
+    function sendMessage() {
+        const userInput = document.getElementById('userInput').value.toLowerCase().trim();
+        const chatbox = document.getElementById('chatbox');
+        
+        if (userInput !== "") {
+            // Display user's message
+            const userMessage = document.createElement('div');
+            userMessage.className = "message userMessage";
+            userMessage.textContent = userInput;
+            chatbox.appendChild(userMessage);
+            
+            // Display bot response
+            const botMessage = document.createElement('div');
+            botMessage.className = "message botMessage";
+            
+            // Check if a response exists for the user's input
+            if (responses[userInput]) {
+                botMessage.innerHTML = responses[userInput]; // Use innerHTML to include links
+            } else {
+                botMessage.textContent = "Sorry, I don't understand that. Try asking about courses, admissions, or departments.";
+            }
+            
+            chatbox.appendChild(botMessage);
+
+            // Clear the input field
+            document.getElementById('userInput').value = "";
+            
+            // Scroll to the bottom of the chatbox
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    }
+</script>
+
+</body>
+</html>
